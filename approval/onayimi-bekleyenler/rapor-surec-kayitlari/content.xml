@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Report">
+  <xapp:content xapp:primaryType="xapp:ListReport"
+                xapp:resourceType="/app/foundation/component/list-report"
+                xapp:created="2015-01-01T11:48:12.871+02:00"
+                xapp:createdBy="admin"
+                xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                xapp:lastModifiedBy="admin"
+                xapp:title="Müşteri liste raporu">
+    <xapp:config>
+      <DataSourcePath>/content/sixt-rental/surec-raporlari/onayimi-bekleyenler/veri-surec-kayitlari</DataSourcePath>
+      <Columns>
+        <ContextMenu>
+          <LinkButton title="Detay">
+            <ResourcePathData fieldName="PagePath"/>
+            <Request>
+              <Parameter name="executionId"
+                         fieldName="Id"
+                         defaultValue="0"/>
+            </Request>
+          </LinkButton>
+        </ContextMenu>
+        <Data title="#"
+              dataFieldName="Id"
+              dataFormat="00000"
+              visible="true"/>
+        <Data title="PagePath"
+              dataFieldName="PagePath"
+              dataFormat="0"
+              visible="false"/>
+        <Data title="Süreç"
+              dataFieldName="Title"
+              dataFormat="0"
+              alignment="Left"
+              sortable="true"
+              visible="true"/>
+        <Data title="Adım"
+              dataFieldName="PendingStateTitle"
+              dataFormat="0"
+              alignment="Left"
+              sortable="true"
+              visible="true"/>
+        <Data title="Adım Termin"
+              dataFieldName="PendingStateDueDate"
+              dataFormat="dd/MM/yyyy HH:mm"
+              alignment="Left"
+              sortable="true" />
+        <Data title="Yetkili"
+              dataFieldName="Assignee"
+              dataFormat="0"
+              alignment="Left"
+              sortable="true"
+              visible="true"/>
+        <Data title="Başlangıç"
+              dataFieldName="CreatedDate"
+              dataFormat="dd/MM/yyyy HH:mm"
+              alignment="Right"
+              sortable="true" />
+        <Data title="Termin"
+              dataFieldName="DueDate"
+              dataFormat="dd/MM/yyyy HH:mm"
+              alignment="Right"
+              sortable="true" />
+      </Columns>
+      <QueryView>
+        <FormLayout>
+          <Row>
+            <Column weight="2">
+              <Label fieldName="Title"
+                     displayName="İş tanımı"/>
+              <TextBox fieldName="Title"
+                       dataType="String"/>
+            </Column>
+            <Column weight="1">
+              <Label fieldName="Status"
+                     displayName="Durum"/>
+              <ComboBox  fieldName="Status"
+                         dataType="Int32"
+                         defaultValue="2">
+                <Items>
+                  <Item text="Devam ediyor" value="2"/>
+                  <Item text="Tamamlandı" value="3"/>
+                  <Item text="Beklemede" value="5"/>
+                  <Item text="İptal edildi" value="4"/>
+                </Items>
+              </ComboBox>
+            </Column>
+            <Column weight="1">
+              <Label fieldName="Deadline"
+                     displayName="Zaman"/>
+              <ComboBox  fieldName="Deadline"
+                         dataType="Int32"
+                         defaultValue="0">
+                <Items>
+                  <Item text="Hepsi" value="0"/>
+                  <Item text="Bugün" value="1"/>
+                  <Item text="Yarın" value="2"/>
+                  <Item text="3 gün içinde" value="3"/>
+                  <Item text="Bu hafta" value="7"/>
+                  <Item text="Daha sonra" value="365"/>
+                </Items>
+              </ComboBox>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <Label fieldName="StartLowerDate"
+                     displayName="Başlangıç Tarih Aralığı"/>
+              <DateBox fieldName="StartLowerDate"
+                       dataType="DateTime"/>
+              <NewLine/>
+              <DateBox fieldName="StartUpperDate"
+                       dataType="DateTime"/>
+            </Column>
+            <Column>
+              <Label fieldName="EndLowerDate"
+                     displayName="Bitiş Tarih Aralığı"/>
+              <DateBox fieldName="EndLowerDate"
+                       dataType="DateTime"/>
+              <NewLine/>
+              <DateBox fieldName="EndUpperDate"
+                       dataType="DateTime"/>
+            </Column>
+          </Row>
+        </FormLayout>
+      </QueryView>
+    </xapp:config>
+  </xapp:content>
+</root>

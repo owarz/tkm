@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Kullanıcı grubu veri kaynağı">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString></DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                        SELECT grp.[Id]
+                            ,grp.[Name]
+                            ,grp.[Description]
+                        FROM AppCloud_Group grp
+                        WHERE (@SearchText IS NULL OR @SearchText = '' OR Name like '%' + @SearchText + '%' OR Description like '%' + @SearchText + '%')
+                            AND (@Keyword IS NULL OR @Keyword = '' OR Name like '%' + @Keyword + '%' OR Description like '%' + @Keyword + '%')
+	                        AND (@UserId <= 0 OR EXISTS(SELECT 1 FROM AppCloud_User2Group u2g WHERE u2g.UserId=@UserId AND grp.Id = u2g.GroupId))
+	                        AND (@OrganizationId <= 0 OR EXISTS(SELECT 1 FROM AppCloud_Group2Organization g2o WHERE g2o.OrganizationId=@OrganizationId AND grp.Id = g2o.GroupId))
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <Param name="Keyword"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="SearchText"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="UserId"
+                           dataType="Int64"
+                           defaultValue="0" />
+                    <Param name="OrganizationId"
+                           dataType="Int64"
+                           defaultValue="0" /> 
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="groups">
+                    <Columns>
+                        <DataColumn name="Id"
+                                    dataType="Int64" />
+                        <DataColumn name="Name"
+                                    dataType="String" />
+                        <DataColumn name="Description"
+                                    dataType="String" /> 
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="true"
+                   defaultPage="1"
+                   defaultPageSize="10">
+                <FilterFields> 
+                    <Field name="Name"
+                           dataType="String" />
+                    <Field name="Description"
+                           dataType="String" />
+                </FilterFields>
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

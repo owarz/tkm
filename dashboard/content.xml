@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Page">
+    <xapp:access enabled="true">
+        <xapp:allow>
+            <xapp:group xapp:value="user"/>
+        </xapp:allow>
+    </xapp:access>
+    <xapp:content xapp:primaryType="xapp:PageContent"
+                  xapp:resourceType="/app/foundation/component/html-page"
+                  xapp:masterPagePath="/app/edms/component/page/full-content-page"
+                  xapp:templatePath=""
+                  xapp:designName=""
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="İş Takibi">
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/document"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="report00-6">
+            <xapp:config>
+                <View>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-incoming-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" gelen evrak">
+                            <Style fontSize="12"/>
+                        </Text>
+                    </DataContext>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/document"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="report00-2">
+            <xapp:config>
+                <View>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-outgoing-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" giden evrak">
+                            <Style fontSize="12"/>
+                        </Text>
+                    </DataContext>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/document"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="report00-3">
+            <xapp:config>
+                <View>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-approved-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" onaylandı ">
+                            <Style fontSize="12"/>
+                        </Text>
+                        <Text value=" / "> 
+                        </Text>
+                    </DataContext>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-rejected-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" reddedildi">
+                            <Style fontSize="12"/>
+                        </Text>
+                    </DataContext>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/document"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="report00-7">
+            <xapp:config>
+                <View>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-pending-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" beklemede">
+                            <Style fontSize="12"/>
+                        </Text>
+                    </DataContext>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/document"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="report00-4">
+            <xapp:config>
+                <View>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-assigned-to-me-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" havale gelen">
+                            <Style fontSize="12"/>
+                        </Text>
+                    </DataContext>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/document"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="report00-13">
+            <xapp:config>
+                <View>
+                    <DataContext dataSourcePath="/content/edms/tk-TM/data-source/report-stats-assigned-by-me-document-count"
+                                 fieldName="">
+                        <Text>
+                            <ValueData fieldName="TotalCount"
+                                       dataType="Int32"
+                                       dataFormat="0"
+                                       defaultValue="-"/>
+                        </Text>
+                        <Text value=" havale edilen">
+                            <Style fontSize="12"/>
+                        </Text>
+                    </DataContext>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box01">
+            <xapp:config>
+                <Title>Onayımı bekleyen gelen evraklar</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/list-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="list-pending-workflows">
+                <xapp:config>
+                    <View>
+                        <ListReportPath>/content/edms/tk-TM/report-definition/list-report-pending-incoming-document</ListReportPath>
+                        <EnableSorting>true</EnableSorting>
+                        <EnablePaging>true</EnablePaging>
+                        <EnableFiltering>true</EnableFiltering>
+                        <DefaultPage>1</DefaultPage>
+                        <DefaultPageSize>8</DefaultPageSize>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box07">
+            <xapp:config>
+                <Title>Onayımı bekleyen giden evraklar</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/list-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="list-pending-approvals">
+                <xapp:config>
+                    <View>
+                        <ListReportPath>/content/edms/tk-TM/report-definition/list-report-pending-outgoing-document</ListReportPath>
+                        <EnableSorting>true</EnableSorting>
+                        <EnablePaging>true</EnablePaging>
+                        <EnableFiltering>true</EnableFiltering>
+                        <DefaultPage>1</DefaultPage>
+                        <DefaultPageSize>20</DefaultPageSize>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+    </xapp:content>
+</root>

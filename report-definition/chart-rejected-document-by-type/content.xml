@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Report">
+    <xapp:content xapp:primaryType="xapp:ChartReport"
+                  xapp:resourceType="/app/foundation/component/chart-report"
+                  xapp:created="2015-01-01T11:48:12.871+02:00"
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Forecast Grafik Raport">
+        <xapp:config>
+            <DataSourcePath>/content/edms/tk-TM/data-source/report-data-rejected-document-by-type</DataSourcePath>
+            <XAxis>
+                <AxisType>Category</AxisType>
+                <DataFieldName>DocumentTypeName</DataFieldName>
+                <EnableLabel>false</EnableLabel>
+            </XAxis>
+            <YAxis>
+                <Title></Title>
+                <EnableLabel>true</EnableLabel>
+            </YAxis>
+            <Series>
+                <Chart>
+                    <ShowInLegend>false</ShowInLegend>
+                    <ShowDataLabel>true</ShowDataLabel>
+                    <Title></Title>
+                    <ChartType>Pie</ChartType>
+                    <DataPoint>
+                        <X>DocumentTypeName</X>
+                        <Y>TotalCount</Y>
+                        <DataFormat>0</DataFormat>
+                    </DataPoint>
+                </Chart>
+            </Series>
+            <Tooltip>
+                <Content>
+                    <LinearLayout>
+                        <Text value="Evrak Türü: ">
+                            <Style fontSize="12"
+                                   bold="true"
+                                   italic="false"
+                                   underline="false" />
+                        </Text>
+                        <Text value="{point.name}">
+                            <Style fontSize="12"
+                                   bold="false"
+                                   italic="false"
+                                   underline="false" />
+                        </Text>
+                    </LinearLayout>
+                    <LinearLayout>
+                        <Text value="Toplam: ">
+                            <Style fontSize="12"
+                                   bold="true"
+                                   italic="false"
+                                   underline="false" />
+                        </Text>
+                        <Text value="{point.y} adet">
+                            <Style fontSize="12"
+                                   bold="false"
+                                   italic="false"
+                                   underline="false" />
+                        </Text>
+                    </LinearLayout>
+                </Content>
+            </Tooltip>
+        </xapp:config>
+    </xapp:content>
+</root>

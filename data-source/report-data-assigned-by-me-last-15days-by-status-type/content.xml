@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString>
+                </DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                        SELECT 
+                        	CASE 
+		                        WHEN doc.StatusType = 1 THEN 'Beklemede'
+		                        WHEN doc.StatusType = 2 THEN 'Onaylandı'
+		                        WHEN doc.StatusType = 3 THEN 'Reddedildi'
+	                        END StatusTypeName,
+	                        count(*) TotalCount,
+	                        CAST(CreateDate AS DATE) CreateDate
+                        FROM EDMS_Document doc
+						INNER JOIN AppCloud_Workflow wf on wf.Id = doc.WorkflowId
+                        WHERE wf.[Status] <> 4 
+                            AND CreateDate > DATEADD(DAY, -15, GETDATE()) 
+                            AND doc.CreateUserId = @CurrentUserId 
+                            AND doc.AssigneeId > 0
+                        GROUP BY CAST(CreateDate AS DATE), doc.StatusType
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <ContextParam name="CurrentUserId"
+                                  dataType="Int64"
+                                  defaultValue="-1"
+                                  variable="${@user_id}"/>
+
+                    <Param name="OrderNumber"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="CompanyId"
+                           dataType="Int64"
+                           defaultValue="" /> 
+                    <Param name="UserId"
+                           dataType="Int64"
+                           defaultValue="" /> 
+                    <Param name="OrderDateLower"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="OrderDateUpper"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="DueDateLower"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="DueDateUpper"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="Status"
+                           dataType="Int32"
+                           defaultValue="-1" />
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="EDMS_Document">
+                    <Columns> 
+                        <DataColumn name="StatusTypeName"
+                                    dataType="Int32" />
+                        <DataColumn name="TotalCount"
+                                    dataType="Int32" />
+                        <DataColumn name="CreateDate"
+                                    dataType="DateTime" />
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="false">
+                <DefaultSorting>
+                    <Sort field="CreateDate"
+                          type="Asc"/>
+                </DefaultSorting>
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

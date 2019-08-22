@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Page">
+    <xapp:mapping>
+        <xapp:map xapp:value="/logout"/>
+    </xapp:mapping>
+    <xapp:content xapp:primaryType="xapp:PageContent"
+                  xapp:resourceType="/app/foundation/component/html-page"
+                  xapp:masterPagePath="/app/foundation/component/page/membership-page"
+                  xapp:templatePath=""
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Çıkış yaptınız">
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/component/logout"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="membership-logout">
+            <xapp:config>
+                <Title>Türkmence: ?? Oturum kapatıldı</Title>
+                <LoginPath>/content/edms/tk-TM/membership/login</LoginPath>
+                <RedirectPath>/content/edms/tk-TM/dashboard</RedirectPath>
+            </xapp:config>
+        </xapp:content>
+
+    </xapp:content>
+</root>

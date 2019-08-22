@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:EmailTemplate">
+
+  <xapp:content xapp:primaryType="xapp:EmailTemplateContent"
+                xapp:created=""
+                xapp:createdBy="admin"
+                xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                xapp:lastModifiedBy="admin"
+                xapp:title="Sipariş işleme alındı e-mail şablonu">
+    <xapp:config>
+      <Title>${DocumentNumber} no.lu siparişiniz işleme alınmıştır</Title>
+      <Content>
+        <![CDATA[
+                <p>Değerli müşterimiz,</p> 
+                <p>${DocumentNumber} no.lu siparişiniz işleme alınmıştır. Sipariş durumunuzu sitemizden kontrol edebilirsiniz.</p>
+                <p>Bu bir bilgilendirme emailidir.</p>
+                <br/>
+                <p>Lütfen bu emaile yanıt dönmeyiniz.</p>
+                ]]>
+      </Content> 
+    </xapp:config>
+  </xapp:content>
+
+</root>

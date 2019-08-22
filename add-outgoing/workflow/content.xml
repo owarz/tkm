@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Workflow">
+
+    <xapp:content xapp:primaryType="xapp:WorkflowContent"
+                  xapp:resourceType="/app/foundation/component/workflow"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Yeni Giden Belge Kaydı"
+                  xapp:name="10">
+
+        <xapp:content xapp:primaryType="xapp:WorkflowStart"
+                      xapp:name="start"
+                      xapp:title="Başla">
+            <xapp:config>
+                <Next>document-number</Next>
+                <Deadline>
+                    <After>
+                        <Day value="10"/>
+                        <Hour value="0"/>
+                        <Minute value="0"/>
+                    </After>
+                </Deadline>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowCodeGenerator"
+                      xapp:name="document-number"
+                      xapp:title="Belge Numarası">
+            <xapp:config>
+                <Next>document-info</Next>
+                <Code fieldName="DOI"
+                      dataType="String">
+                    <ContextParam variable="${@workflow_execution_id}"
+                                  dataType="Int32"
+                                  dataFormat="0"
+                                  length="10"
+                                  paddingLeft="0"/>
+                </Code>
+                <Code fieldName="DocumentDate"
+                      dataType="DateTime">
+                    <ContextParam variable="${@current_datetime}"
+                                  dataType="DateTime"/>
+                </Code>
+                <Code fieldName="DocumentIOType"
+                      dataType="Int32">
+                    <Constant value="2"
+                              dataType="String" />
+                </Code>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:WorkflowForm"
+                      xapp:name="document-info"
+                      xapp:title="Evrak Bilgileri">
+            <xapp:config>
+                <Next>document-additional-data</Next>
+                <FormPath>/content/edms/tk-TM/add-outgoing/form/add-document-info</FormPath>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:WorkflowCodeGenerator"
+                      xapp:name="document-additional-data"
+                      xapp:title="Belge Numarası">
+            <xapp:config>
+                <Next>document-db-import</Next>
+                <Code fieldName="CreateUserId"
+                      dataType="Int64">
+                    <ContextParam variable="${@user_id}"
+                                  dataType="Int64"/>
+                </Code>
+                <Code fieldName="CreateDate"
+                      dataType="DateTime">
+                    <ContextParam variable="${@current_datetime}"
+                                  dataType="DateTime"/>
+                </Code>
+                <Code fieldName="UpdateUserId"
+                      dataType="Int64">
+                    <ContextParam variable="${@user_id}"
+                                  dataType="Int64"/>
+                </Code>
+                <Code fieldName="UpdateDate"
+                      dataType="DateTime">
+                    <ContextParam variable="${@current_datetime}"
+                                  dataType="DateTime"/>
+                </Code>
+                <Code fieldName="StatusType"
+                      dataType="Int32">
+                    <Constant value="1"
+                              dataType="String" />
+                </Code>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowDataImport"
+                      xapp:name="document-db-import"
+                      xapp:title="Veritabanı Aktarımı">
+            <xapp:config>
+                <Next>select-approval-form</Next>
+                <DbMapping>
+                    <DbConnection>
+                        <DbConnectionString></DbConnectionString>
+                        <DbType>MSSQL</DbType>
+                    </DbConnection>
+                    <Mappings>
+                        <DataTable name="EDMS_Document">
+                            <Indentity dataType="Int64"
+                                       name="Id"/>
+                            <Column dataType="String"
+                                    name="DOI"
+                                    fieldName="DOI" />
+                            <Column dataType="Int64"
+                                    name="TargetOrganizationId"
+                                    fieldName="TargetOrganizationId" />
+                            <Column dataType="Int64"
+                                    name="SourceOrganizationId"
+                                    fieldName="SourceOrganizationId" />
+                            <Column dataType="Int64"
+                                    name="AssigneeId"
+                                    fieldName="AssigneeId" />
+                            <Column dataType="Int64"
+                                    name="ApproveUserId"
+                                    fieldName="ApproveUserId" />
+                            <Column dataType="String"
+                                    name="DocumentPlanCode"
+                                    fieldName="DocumentPlanCode" />
+                            <Column dataType="String"
+                                    name="DocumentAccessNumber"
+                                    fieldName="DocumentAccessNumber" />
+                            <Column dataType="String"
+                                    name="DocumentSubject"
+                                    fieldName="DocumentSubject" />
+                            <Column dataType="String"
+                                    name="DocumentInterest"
+                                    fieldName="DocumentInterest" />
+                            <Column dataType="String"
+                                    name="DocumentContent"
+                                    fieldName="DocumentContent" />
+                            <Column dataType="String"
+                                    name="DocumentBranch"
+                                    fieldName="DocumentBranch" />
+                            <Column dataType="String"
+                                    name="DocumentNumber"
+                                    fieldName="DocumentNumber" />
+                            <Column dataType="DateTime"
+                                    name="DocumentDate"
+                                    fieldName="DocumentDate" />
+                            <Column dataType="Int32"
+                                    name="DocumentLanguage"
+                                    fieldName="DocumentLanguage" />
+                            <Column dataType="Int32"
+                                    name="DocumentIOType"
+                                    fieldName="DocumentIOType" />
+                            <Column dataType="Int32"
+                                    name="DocumentArrivalType"
+                                    fieldName="DocumentArrivalType" />
+                            <Column dataType="Int32"
+                                    name="DocumentType"
+                                    fieldName="DocumentType" />
+                            <Column dataType="String"
+                                    name="DocumentDescription"
+                                    fieldName="DocumentDescription" />
+                            <Column dataType="String"
+                                    name="DocumentAssignmentDescription"
+                                    fieldName="DocumentAssignmentDescription" />
+                            <Column dataType="String"
+                                    name="DocumentAttachmentDescription"
+                                    fieldName="DocumentAttachmentDescription" />
+                            <Column dataType="String"
+                                    name="DocumentInformation"
+                                    fieldName="DocumentInformation" />
+                            <Column dataType="String"
+                                    name="DocumentDistributionRequirement"
+                                    fieldName="DocumentDistributionRequirement" />
+                            <Column dataType="String"
+                                    name="DocumentApprovementDescription"
+                                    fieldName="DocumentApprovementDescription" />
+                            <Column dataType="Int32"
+                                    name="StatusType"
+                                    fieldName="StatusType" />
+                            <Column dataType="Int64"
+                                    name="CreateUserId"
+                                    fieldName="CreateUserId" />
+                            <Column dataType="DateTime"
+                                    name="CreateDate"
+                                    fieldName="CreateDate" />
+                            <Column dataType="Int64"
+                                    name="UpdateUserId"
+                                    fieldName="UpdateUserId" />
+                            <Column dataType="DateTime"
+                                    name="UpdateDate"
+                                    fieldName="UpdateDate" />
+                        </DataTable>
+                        <If>
+                            <Condition>
+                                <Check value="3"
+                                       field="DamageType"
+                                       dataType="Int32"
+                                       operator="NotEqual"/>
+                            </Condition>
+                            <DataTable name="EDMS_Document">
+                                <Indentity dataType="Int64"
+                                           name="Id"/>
+                                <Column dataType="Int64"
+                                        name="CreateUserId"
+                                        fieldName="CreateUserId" />
+                                <Column dataType="DateTime"
+                                        name="CreateDate"
+                                        fieldName="CreateDate" />
+                            </DataTable>
+                        </If>
+                        <ForEach fieldName="ExcelFileOrderItemList">
+                            <DataTable name="ECO_OrderItem">
+                                <Indentity dataType="Int64"
+                                           name="Id" />
+                                <Relation dataType="Int64"
+                                          name="OrderId"
+                                          foreignTable="ECO_Order"
+                                          foreignColumn="Id" />
+                            </DataTable>
+                        </ForEach>
+                    </Mappings>
+                </DbMapping>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:WorkflowCondition"
+                      xapp:name="select-approval-form"
+                      xapp:title="Belge Onay Seçimi"
+                      xapp:description="">
+            <xapp:config>
+                <True>approve-document</True>
+                <False>update-document-status-as-completed</False>
+                <If>
+                    <Check value="0"
+                           field="ApproveUserId"
+                           dataType="Int32"
+                           operator="Greater"/>
+                </If>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowApprove"
+                      xapp:name="approve-document"
+                      xapp:title="Belge Onayı"
+                      xapp:description="Belge Onay">
+            <xapp:config>
+                <View>
+                    <TableLayout>
+                        <Style alignment="Left"
+                               pWidth="100"/>
+                        <Row>
+                            <Column>
+                                <Style paddingBottom="20"
+                                       alignment="Center"/>
+                                <Document>
+                                    <ViewPath>/content/edms/tk-TM/add-outgoing/view/document-summary</ViewPath>
+                                </Document>
+                            </Column>
+                        </Row>
+                    </TableLayout>
+                </View>
+                <Approvers>
+                    <User>
+                        <ValueData fieldName="ApproveUserEmail"
+                                   defaultValue="admin"/>
+                    </User>
+                    <!--
+                    <User value="ali.kemal@mailinator.com"/>
+                    <User value="ismail@mail.com"/>
+                    <Group value="Admin-Muhasebe"/>
+                    <Group value="Admin-Muhasebex"/>
+                    <Organization value="Denizli"/>
+                    <State value="05-form"/>
+                    <Current/>
+                    <Creator>
+                        <IfEnabled>
+                            <Check value="False"
+                                   field="AcceptTerms"
+                                   dataType="Boolean"
+                                   operator="Equal" />
+                        </IfEnabled>
+                    </Creator>
+                    -->
+                </Approvers>
+                <Approved>
+                    <Next>update-document-status-as-completed</Next>
+                    <Condition>
+                        <User>
+                            <ValueData fieldName="ApproveUserEmail"
+                                       defaultValue="admin"/>
+                        </User>
+                    </Condition>
+                </Approved>
+                <Rejected>
+                    <Next>update-document-status-as-rejected</Next>
+                    <Condition>
+                        <User>
+                            <ValueData fieldName="ApproveUserEmail"
+                                       defaultValue="admin"/>
+                        </User>
+                    </Condition>
+                </Rejected>
+                <Deadline>
+                    <After>
+                        <Day value="1"/>
+                        <Hour value="0"/>
+                        <Minute value="0"/>
+                    </After>
+                </Deadline>
+                <Assignee>
+                    <User>
+                        <ValueData fieldName="ApproveUserEmail"
+                                   defaultValue="admin"/>
+                    </User>
+                </Assignee>
+                <Assignable>
+                    <User>
+                        <ValueData fieldName="ApproveUserEmail"
+                                   defaultValue="admin"/>
+                    </User>
+                </Assignable>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:WorkflowCodeGenerator"
+                      xapp:name="update-document-status-as-completed"
+                      xapp:title="Durumu Güncelle">
+            <xapp:config>
+                <Next>document-db-update-as-completed</Next>
+                <Code fieldName="StatusType"
+                      dataType="Int32">
+                    <Constant value="2"
+                              dataType="Int32" />
+                </Code>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowDataImport"
+                      xapp:name="document-db-update-as-completed"
+                      xapp:title="Veritabanı Aktarımı">
+            <xapp:config>
+                <Next>document-email</Next>
+                <DbMapping>
+                    <DbConnection>
+                        <DbConnectionString></DbConnectionString>
+                        <DbType>MSSQL</DbType>
+                    </DbConnection>
+                    <Mappings>
+                        <DataTable name="EDMS_Document">
+                            <Indentity dataType="Int64"
+                                       name="Id"/>
+                            <Column dataType="Int32"
+                                    name="StatusType"
+                                    fieldName="StatusType" />
+                            <Column dataType="DateTime"
+                                    name="ApproveDate"
+                                    fieldName="${@current_datetime}" />
+                        </DataTable>
+                    </Mappings>
+                </DbMapping>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowCodeGenerator"
+                      xapp:name="update-document-status-as-rejected"
+                      xapp:title="Durumu Güncelle">
+            <xapp:config>
+                <Next>document-db-update-as-rejected</Next>
+                <Code fieldName="StatusType"
+                      dataType="Int32">
+                    <Constant value="3"
+                              dataType="Int32" />
+                </Code>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowDataImport"
+                      xapp:name="document-db-update-as-rejected"
+                      xapp:title="Veritabanı Aktarımı">
+            <xapp:config>
+                <Next>document-email</Next>
+                <DbMapping>
+                    <DbConnection>
+                        <DbConnectionString></DbConnectionString>
+                        <DbType>MSSQL</DbType>
+                    </DbConnection>
+                    <Mappings>
+                        <DataTable name="EDMS_Document">
+                            <Indentity dataType="Int64"
+                                       name="Id"/>
+                            <Column dataType="Int32"
+                                    name="StatusType"
+                                    fieldName="StatusType" />
+                            <Column dataType="DateTime"
+                                    name="ApproveDate"
+                                    fieldName="${@current_datetime}" />
+                        </DataTable>
+                    </Mappings>
+                </DbMapping>
+            </xapp:config>
+        </xapp:content>
+
+
+        <xapp:content xapp:primaryType="xapp:WorkflowEmail"
+                      xapp:name="document-email"
+                      xapp:title="E-posta Gönder">
+            <xapp:config>
+                <Next>end</Next>
+                <From></From>
+                <To>${Email};${Emailx}</To>
+                <Cc></Cc>
+                <Bcc>satis@eco.com.tr</Bcc>
+                <Title></Title>
+                <TemplatePath>/content/edms/tk-TM/add-outgoing/email-content/document-added</TemplatePath>
+            </xapp:config>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:WorkflowEnd"
+                      xapp:name="end"
+                      xapp:title="İşlem Sonucu"
+                      xapp:description="Evrak gönderim süreci tamamlandı">
+            <xapp:config>
+                <View>
+                    <TableLayout>
+                        <Style pWidth="100"/>
+                        <Row>
+                            <Column>
+                                <Document>
+                                    <ViewPath>/content/edms/tk-TM/add-outgoing/view/document-summary</ViewPath>
+                                </Document>
+                            </Column>
+                        </Row>
+                    </TableLayout>
+                </View>
+            </xapp:config>
+        </xapp:content>
+
+    </xapp:content>
+</root>

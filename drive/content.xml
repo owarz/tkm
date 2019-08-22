@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Page">
+    <xapp:access enabled="true">
+        <xapp:allow>
+            <xapp:group xapp:value="user"/>
+        </xapp:allow>
+    </xapp:access>
+    <xapp:content xapp:primaryType="xapp:PageContent"
+                  xapp:resourceType="/app/foundation/component/html-page"
+                  xapp:masterPagePath="/app/eco/component/page/full-content-page"
+                  xapp:templatePath=""
+                  xapp:designName=""
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Belgelerim">
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/component/asset-manager"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="asset-manager">
+            <xapp:config>
+                <View>
+                    <RootDirectoryPath>/dam/doc</RootDirectoryPath>
+                    <!--
+                    <Navigation>
+                        <NavigationItem title="Deneme2" resourcePath="/content/site/sikayet-kaydi"/>
+                        <NavigationItem title="Deneme2" workflowPath="" resourcePath="/content/devops/site/workflow/xapp.content/box01/workflow01/execute.html?workflowPath=%2Fcontent%2FDevOps%2Fworkflow%2Fimage"/>
+                    </Navigation>
+                    -->
+                </View>
+            </xapp:config>
+        </xapp:content>
+    </xapp:content>
+</root>

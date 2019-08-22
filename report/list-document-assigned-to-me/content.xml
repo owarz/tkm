@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Page">
+    <xapp:access enabled="true">
+        <xapp:allow>
+            <xapp:group xapp:value="user"/>
+        </xapp:allow>
+    </xapp:access>
+    <xapp:content xapp:primaryType="xapp:PageContent"
+                  xapp:resourceType="/app/foundation/component/html-page"
+                  xapp:masterPagePath="/app/edms/component/page/full-content-page"
+                  xapp:templatePath=""
+                  xapp:designName=""
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Havale Gelen Evraklar">
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box00-03">
+            <xapp:config>
+                <Title>Evrak türüne göre dağılım</Title>
+                <ShowToolbar>true</ShowToolbar>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/chart-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="chart00-03">
+                <xapp:config>
+                    <View>
+                        <ChartReportPath>/content/edms/tk-TM/report-definition/chart-assigned-to-me-by-type</ChartReportPath>
+                        <ColorScheme>3</ColorScheme>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box00-04">
+            <xapp:config>
+                <Title>Son 2 haftada havale gelen evrakların durum</Title>
+                <ShowToolbar>true</ShowToolbar>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/chart-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="chart00-04">
+                <xapp:config>
+                    <View>
+                        <ChartReportPath>/content/edms/tk-TM/report-definition/chart-assigned-to-me-last-15days-by-status-type</ChartReportPath>
+                        <ColorScheme>1</ColorScheme>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box01">
+            <xapp:config>
+                <Title>Havale Gelen Evraklar</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/list-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="order-list">
+                <xapp:config>
+                    <View>
+                        <Title></Title>
+                        <ListReportPath>/content/edms/tk-TM/report-definition/list-report-document-assigned-to-me</ListReportPath>
+                        <EnableSorting>true</EnableSorting>
+                        <EnablePaging>true</EnablePaging>
+                        <EnableRefresh>true</EnableRefresh>
+                        <EnableFiltering>true</EnableFiltering>
+                        <DefaultPage>1</DefaultPage>
+                        <DefaultPageSize>10</DefaultPageSize>
+                        <ComponentType>DataTable</ComponentType>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+    </xapp:content>
+</root>

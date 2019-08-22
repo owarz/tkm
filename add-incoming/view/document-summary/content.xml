@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:View">
+    <xapp:content xapp:primaryType="xapp:DocumentView"
+                  xapp:resourceType="/app/foundation/view-component/document"
+                  xapp:created="2015-01-01T11:48:12.871+02:00"
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <View>
+                <LinearLayout>
+                    <Style alignment="Center"/>
+                    <TableLayout>
+                        <Style alignment="Left"/>
+                        <Row>
+                            <IfVisible>
+                                <Check value="2"
+                                       field="StatusType"
+                                       dataType="Int32"
+                                       operator="Equal"/>
+                            </IfVisible>
+                            <Column weight="4">
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa"
+                                       alignment="Center">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="EVRAK ONAYLANDI">
+                                    <Style fontSize="18"
+                                           bold="true"
+                                           color="green"/>
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <IfVisible>
+                                <Check value="3"
+                                       field="StatusType"
+                                       dataType="Int32"
+                                       operator="Equal"/>
+                            </IfVisible>
+                            <Column weight="4">
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#f8f8f8"
+                                       alignment="Center">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="EVRAK REDEDİLDİ">
+                                    <Style fontSize="18"
+                                           bold="true"
+                                           color="red"/>
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#f8f8f8">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Kayıt Birimi">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="TargetOrganizationName"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Geldiği Yer">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="SourceOrganizationName"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Havale">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="AssigneeName"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Havale Onaylayacak Kullanıcı">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="ApproveUser"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Dosya Planı">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentPlanCode"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Kayıt Erişim Numarası">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentAccessNumber"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Konusu">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentSubject"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Gelen Evrak İlgi">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentInterest"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Şube Numarası">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentBranch"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Numarası">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentNumber"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Tarihi">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentDate"
+                                               dataType="DateTime"
+                                               dataFormat="dd.MM.yyyy" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Dili">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Türkmence">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="1"
+                                                   field="DocumentLanguage"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Rusça">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="2"
+                                                   field="DocumentLanguage"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Geliş Şekli">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Posta">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="1"
+                                                   field="DocumentArrivalType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="E-posta">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="2"
+                                                   field="DocumentArrivalType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Elden">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="3"
+                                                   field="DocumentArrivalType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Fax">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="4"
+                                                   field="DocumentArrivalType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Türü">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Normal Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="1"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Özel Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="2"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Hizmete Özel Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="3"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Dilekçe">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="4"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="İvedi Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="5"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Çok İvedi Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="6"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Günlü Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="7"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Gizli Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="8"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Çok Gizli Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="9"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Kişiye Özel Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="10"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                                <Text value="Kişi Adına Gelen Evrak">
+                                    <IfVisible>
+                                        <Or>
+                                            <Check value="11"
+                                                   field="DocumentType"
+                                                   dataType="Int32"
+                                                   operator="Equal"/>
+                                        </Or>
+                                    </IfVisible>
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Açıklama">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentDescription"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Havale Açıklama">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentAssignmentDescription"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column>
+                                <Style padding="8"
+                                       minWidth="200"
+                                       backgroundColor="#fafafa">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text value="Evrak Ekleri">
+                                    <Style bold="true" />
+                                </Text>
+                            </Column>
+                            <Column weight="3">
+                                <Style padding="8"
+                                       minWidth="200">
+                                    <Border width="1"
+                                            color="#ededed"
+                                            style="Solid"/>
+                                </Style>
+                                <Text>
+                                    <ValueData fieldName="DocumentAttachmentDescription"
+                                               dataType="String"
+                                               dataFormat="" />
+                                </Text>
+                            </Column>
+                        </Row>
+
+                        <Row>
+                            <Column weight="4">
+                                <Style padding="0"
+                                       paddingTop="20"
+                                       paddingBottom="5"
+                                       minWidth="200"
+                                       alignment="Left" >
+                                    <Border>
+                                        <Bottom style="Solid"
+                                                width="2"
+                                                color="#ededed"></Bottom>
+                                    </Border>
+                                </Style>
+                                <Text value="EKLER">
+                                    <Style
+                                        bold="true"/>
+                                </Text>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column weight="4">
+                                <TableLayout>
+                                    <Style pWidth="100"/>
+                                    <RowList fieldName="DocumentAttachment">
+                                        <Row>
+                                            <Column>
+                                                <Style paddingTop="5"
+                                                       paddingBottom="5"
+                                                       color="#083d8d"
+                                                       underline="true"
+                                                       fontSize="14"
+                                                       bold="true"/>
+                                                <Text>
+                                                    <ValueData fieldName="@order"
+                                                               dataType="String"
+                                                               dataFormat="" />
+                                                </Text>
+                                                <Text value="-"> 
+                                                </Text>
+                                                <Link text="">
+                                                    <TextData fieldName="FileName"
+                                                              dataType="String"
+                                                              dataFormat="" />
+                                                    <HrefData fieldName="FilePath"
+                                                              dataType="String"
+                                                              dataFormat="" />
+                                              
+                                                </Link>
+                                            </Column> 
+                                        </Row>
+                                    </RowList>
+                                </TableLayout>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Column weight="4">
+                                <Style padding="0"
+                                       paddingTop="5"
+                                       minWidth="200"
+                                       alignment="Left">
+                                    <Border>
+                                        <Bottom style="Solid"
+                                                width="2"
+                                                color="#ededed"></Bottom>
+                                    </Border>
+                                </Style>
+                            </Column>
+                        </Row>
+                    </TableLayout>
+                </LinearLayout>
+            </View>
+        </xapp:config>
+    </xapp:content>
+</root>

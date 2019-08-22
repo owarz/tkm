@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Page">
+  <xapp:access enabled="true">
+    <xapp:allow>
+      <xapp:group xapp:value="Admin"/>
+    </xapp:allow>
+  </xapp:access>
+  <xapp:content xapp:primaryType="xapp:PageContent"
+                xapp:resourceType="/app/foundation/component/html-page"
+                xapp:masterPagePath="/app/sixt-rental/component/page/content-page"
+                xapp:templatePath=""
+                xapp:created=""
+                xapp:createdBy="admin"
+                xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                xapp:lastModifiedBy="admin"
+                xapp:title="Home page">
+    <xapp:content xapp:primaryType="xapp:Component"
+                  xapp:resourceType="/app/foundation/html-component/box"
+                  xapp:created="2015-01-01T11:48:12.871+02:00"
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:name="box01">
+      <xapp:config>
+        <Title>Onay beklediğim süreç kayıtarı</Title>
+      </xapp:config>
+      <xapp:content xapp:primaryType="xapp:Component"
+                    xapp:resourceType="/app/foundation/html-component/list-report"
+                    xapp:created="2015-01-01T11:48:12.871+02:00"
+                    xapp:createdBy="admin"
+                    xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                    xapp:lastModifiedBy="admin"
+                    xapp:name="list-workflow-data">
+        <xapp:config>
+          <View>
+            <ListReportPath>/content/sixt-rental/surec-raporlari/onay-beklediklerim/rapor-surec-kayitlari</ListReportPath>
+            <EnableSorting>true</EnableSorting>
+            <EnablePaging>true</EnablePaging>
+            <EnableFiltering>true</EnableFiltering>
+            <DefaultPage>1</DefaultPage>
+            <DefaultPageSize>20</DefaultPageSize>
+          </View>
+        </xapp:config>
+      </xapp:content>
+    </xapp:content>
+  </xapp:content>
+</root>

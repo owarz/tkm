@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:View">
+
+    <xapp:content xapp:primaryType="xapp:WorkflowView"
+                  xapp:resourceType="/app/foundation/view-component/workflow"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <Title></Title>
+            <PagePath>/content/edms/tk-TM/add-incoming</PagePath>
+            <WorkflowPath>/content/edms/tk-TM/add-incoming/workflow</WorkflowPath>
+            <ShowNavigation>true</ShowNavigation>
+            <ShowToolbar>true</ShowToolbar>
+            <ShowComments>true</ShowComments>
+            <ShowHistory>true</ShowHistory>
+            <ShowNextAssignee>false</ShowNextAssignee>
+        </xapp:config>
+    </xapp:content>
+</root>

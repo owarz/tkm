@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Globalization">
+    <xapp:content xapp:primaryType="xapp:Localization"
+                  xapp:name="tk-TM"
+                  xapp:language="tk" 
+                  xapp:languageName="Turkmen" 
+                  xapp:country="TM" 
+                  xapp:countryName="Turkmenistan" 
+                  xapp:decimalSeparator=","
+                  xapp:thousandSeparator="." 
+                  xapp:shortDateFormat="dd.MM.yyyy" 
+                  xapp:longDateFormat="dd.MM.yyyy hh:mm:ss" 
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin">
+    </xapp:content>
+</root>

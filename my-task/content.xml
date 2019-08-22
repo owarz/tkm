@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+	  xapp:primaryType="xapp:Page">
+	<xapp:access enabled="true">
+		<xapp:allow>
+			<xapp:group xapp:value="user"/>
+		</xapp:allow>
+	</xapp:access>
+	<xapp:content xapp:primaryType="xapp:PageContent"
+				  xapp:resourceType="/app/foundation/component/html-page"
+				  xapp:masterPagePath="/app/edms/component/page/full-content-page"
+				  xapp:templatePath=""
+				  xapp:designName=""
+				  xapp:created=""
+				  xapp:createdBy="admin"
+				  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+				  xapp:lastModifiedBy="admin"
+				  xapp:title="İş Takibi">
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box05">
+            <xapp:config>
+                <Title>Üzerimdeki işlerin son durumu</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/chart-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="chart-workflow-item-status">
+                <xapp:config>
+                    <View>
+                        <ChartReportPath>/content/foundation/dashboard/my-tasks/report-chart-my-workflow-status</ChartReportPath>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box06">
+            <xapp:config>
+                <Title>Üzerimdeki işlerin bitiş zamanı</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/chart-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="chart-workflow-running-item-due-date">
+                <xapp:config>
+                    <View>
+                        <ChartReportPath>/content/foundation/dashboard/my-tasks/report-chart-my-workflow-due-date</ChartReportPath>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box01">
+            <xapp:config>
+                <Title>İş listem</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/list-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="list-pending-workflows">
+                <xapp:config>
+                    <View>
+                        <ListReportPath>/content/foundation/dashboard/my-tasks/report-list-my-workflow</ListReportPath>
+                        <EnableSorting>true</EnableSorting>
+                        <EnablePaging>true</EnablePaging>
+                        <EnableFiltering>true</EnableFiltering>
+                        <DefaultPage>1</DefaultPage>
+                        <DefaultPageSize>8</DefaultPageSize>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/html-component/box"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="box07">
+            <xapp:config>
+                <Title>Onayımı bekleyen işler</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+                          xapp:resourceType="/app/foundation/html-component/list-report"
+                          xapp:created="2015-01-01T11:48:12.871+02:00"
+                          xapp:createdBy="admin"
+                          xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                          xapp:lastModifiedBy="admin"
+                          xapp:name="list-pending-approvals">
+                <xapp:config>
+                    <View>
+                        <ListReportPath>/content/foundation/dashboard/my-approvals/report-list-my-approvals</ListReportPath>
+                        <EnableSorting>true</EnableSorting>
+                        <EnablePaging>true</EnablePaging>
+                        <EnableFiltering>true</EnableFiltering>
+                        <DefaultPage>1</DefaultPage>
+                        <DefaultPageSize>20</DefaultPageSize>
+                    </View>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+    </xapp:content>
+</root>

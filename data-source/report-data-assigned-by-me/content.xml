@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString>
+                </DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                            SELECT doc.WorkflowId as ETag
+                              ,wf.PagePath
+                              ,wf.PendingState
+                              ,doc.Id
+                              ,doc.DOI
+                              ,doc.TargetOrganizationId
+	                          ,torg.Name TargetOrganizationName
+                              ,doc.SourceOrganizationId
+	                          ,sorg.Name SourceOrganizationName
+                              ,doc.AssigneeId
+	                          ,asusr.Email AssigneeEmail 
+							  ,asusr.FirstName + ' ' + asusr.LastName +'(' + asusr.Email + ')' AssigneeFriendlyName
+                              ,doc.ApproveUserId
+	                          ,apusr.Email ApproveUserEmail
+	                          ,apusr.FirstName + ' ' + apusr.LastName +' (' + apusr.Email + ')' ApproveUserFriendlyName
+							  ,doc.ApproveDate
+                              ,doc.DocumentPlanCode
+                              ,doc.DocumentAccessNumber
+                              ,doc.DocumentSubject
+                              ,doc.DocumentInterest
+                              ,doc.DocumentContent
+                              ,doc.DocumentBranch
+                              ,doc.DocumentNumber
+                              ,doc.DocumentDate
+                              ,doc.DocumentLanguage
+							  ,CASE
+			                        WHEN DocumentLanguage=1 THEN 'Türkmence'
+			                        WHEN DocumentLanguage=2 THEN 'Ruşça' 
+			                        ELSE ''
+	                           END DocumentLanguageName
+							  ,doc.DocumentIOType
+							  ,CASE
+			                        WHEN DocumentIOType=1 THEN 'Gelen Evrak'
+			                        WHEN DocumentIOType=2 THEN 'Giden Evrak'  
+			                        ELSE ''
+	                           END DocumentIOTypeName
+                              ,doc.DocumentArrivalType
+	                          ,CASE
+			                        WHEN DocumentArrivalType=1 THEN 'Posta'
+			                        WHEN DocumentArrivalType=2 THEN 'E-posta'
+			                        WHEN DocumentArrivalType=3 THEN 'Elden'
+			                        WHEN DocumentArrivalType=4 THEN 'Fax'
+			                        ELSE ''
+	                           END DocumentArrivalTypeName
+                              ,doc.DocumentType
+	                          ,CASE
+			                        WHEN DocumentType=1 THEN 'Normal Evrak'
+			                        WHEN DocumentType=2 THEN 'Özel Evrak'
+			                        WHEN DocumentType=3 THEN 'Hizmete Özel Evrak'
+			                        WHEN DocumentType=4 THEN 'Dilekçe'
+			                        WHEN DocumentType=5 THEN 'İvedi Evrak'
+			                        WHEN DocumentType=6 THEN 'Çok İvedi Evrak'
+			                        WHEN DocumentType=7 THEN 'Günlü Evrak'
+			                        WHEN DocumentType=8 THEN 'Gizli Evrak'
+			                        WHEN DocumentType=9 THEN 'Çok Gizli Evrak'
+			                        WHEN DocumentType=10 THEN 'Kişiye Özel Evrak'
+			                        WHEN DocumentType=11 THEN 'Kişi Adına Gelen Evrak'
+			                        ELSE ''
+	                           END DocumentTypeName
+                              ,doc.DocumentDescription
+                              ,doc.DocumentAssignmentDescription
+                              ,doc.DocumentAttachmentDescription
+                              ,doc.DocumentInformation
+                              ,doc.DocumentDistributionRequirement
+                              ,doc.DocumentApprovementDescription
+                              ,doc.StatusType
+	                          ,CASE
+			                        WHEN StatusType=1 THEN 'Beklemede'
+			                        WHEN StatusType=2 THEN 'Onaylandı'
+			                        WHEN StatusType=3 THEN 'Reddedildi'
+			                        ELSE ''
+	                           END StatusTypeName
+                              ,doc.CreateUserId
+	                          ,cusr.Email CreateUserEmail 
+							  ,cusr.FirstName + ' ' + cusr.LastName +'(' + cusr.Email + ')' CreateUserFriendlyName
+                              ,doc.CreateDate
+                              ,doc.UpdateUserId
+	                          ,uusr.Email UpdateUserEmail 
+							  ,uusr.FirstName + ' ' + uusr.LastName +'(' + uusr.Email + ')' UpdateUserFriendlyName
+                              ,doc.UpdateDate
+                          FROM EDMS_Document doc
+                          INNER JOIN AppCloud_Workflow wf on wf.Id = doc.WorkflowId
+                          LEFT JOIN AppCloud_Organization torg on doc.TargetOrganizationId = torg.Id
+                          LEFT JOIN AppCloud_Organization sorg on doc.SourceOrganizationId = sorg.Id
+                          LEFT JOIN AppCloud_User asusr on doc.AssigneeId = asusr.Id
+                          LEFT JOIN AppCloud_User apusr on doc.ApproveUserId = apusr.Id
+                          LEFT JOIN AppCloud_User cusr on doc.CreateUserId = cusr.Id
+                          LEFT JOIN AppCloud_User uusr on doc.UpdateUserId = uusr.Id
+                          WHERE doc.CreateUserId = @CurrentUserId AND doc.AssigneeId > 0
+                            AND (@DocumentSubject IS NULL OR @DocumentSubject = '' OR doc.DocumentSubject like '%' + @DocumentSubject + '%')  
+                            AND (@DocumentInterest IS NULL OR @DocumentInterest = '' OR doc.DocumentInterest like '%' + @DocumentInterest + '%')  
+                            AND (@TargetOrganizationId IS NULL OR @TargetOrganizationId <= 0 OR doc.TargetOrganizationId = @TargetOrganizationId)  
+							AND (@SourceOrganizationId IS NULL OR @SourceOrganizationId <= 0 OR doc.SourceOrganizationId = @SourceOrganizationId)  
+                            AND (@DocumentStatusType IS NULL OR @DocumentStatusType < 0 OR doc.StatusType = @DocumentStatusType)  
+                            AND (@DocumentLanguage IS NULL OR @DocumentLanguage < 0 OR doc.DocumentLanguage = @DocumentLanguage)  
+                            AND (@DocumentArrivalType IS NULL OR @DocumentArrivalType < 0 OR doc.DocumentArrivalType = @DocumentArrivalType)  
+                            AND (@DocumentType IS NULL OR @DocumentType < 0 OR doc.DocumentType = @DocumentType)    
+                            AND (@DocumentDateLower IS NULL OR doc.DocumentDate >= CAST(DATEADD(day,0,@DocumentDateLower) as DATE))
+							AND (@DocumentDateUpper IS NULL OR doc.DocumentDate < CAST(DATEADD(day,1,@DocumentDateUpper) as DATE))
+							AND (@ApproveDateLower IS NULL OR doc.ApproveDate >= CAST(DATEADD(day,0,@ApproveDateLower) as DATE))
+							AND (@ApproveDateUpper IS NULL OR doc.ApproveDate < CAST(DATEADD(day,1,@ApproveDateUpper) as DATE)) 
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <ContextParam name="CurrentUserId"
+                                  dataType="Int64"
+                                  defaultValue="-1"
+                                  variable="${@user_id}"/>
+
+                    <Param name="DocumentSubject"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="DocumentInterest"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="TargetOrganizationId"
+                           dataType="Int64"
+                           defaultValue="" />
+                    <Param name="SourceOrganizationId"
+                           dataType="Int64"
+                           defaultValue="" />
+                    <Param name="DocumentStatusType"
+                           dataType="Int32"
+                           defaultValue="" />
+                    <Param name="DocumentLanguage"
+                           dataType="Int32"
+                           defaultValue="" />
+                    <Param name="DocumentArrivalType"
+                           dataType="Int32"
+                           defaultValue="" />
+                    <Param name="DocumentType"
+                           dataType="Int32"
+                           defaultValue="" />
+                    <Param name="DocumentDateLower"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="DocumentDateUpper"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="ApproveDateLower"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="ApproveDateUpper"
+                           dataType="DateTime"
+                           defaultValue="" />
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="EDMS_Document">
+                    <Columns>
+                        <DataColumn name="ETag"
+                                    dataType="Int64" />
+                        <DataColumn name="PagePath"
+                                    dataType="String" />
+                        <DataColumn name="PendingState"
+                                    dataType="String" />
+                        <DataColumn name="Id"
+                                    dataType="Int64" />
+                        <DataColumn name="DOI"
+                                    dataType="String" />
+                        <DataColumn name="TargetOrganizationId"
+                                    dataType="Int64" />
+                        <DataColumn name="TargetOrganizationName"
+                                    dataType="String" />
+                        <DataColumn name="SourceOrganizationId"
+                                    dataType="Int64" />
+                        <DataColumn name="SourceOrganizationName"
+                                    dataType="String" />
+                        <DataColumn name="AssigneeId"
+                                    dataType="Int64" />
+                        <DataColumn name="AssigneeEmail"
+                                    dataType="String" />
+                        <DataColumn name="AssigneeFriendlyName"
+                                    dataType="String" />
+                        <DataColumn name="ApproveUserId"
+                                    dataType="Int64" />
+                        <DataColumn name="ApproveUserEmail"
+                                    dataType="String" />
+                        <DataColumn name="ApproveUserFriendlyName"
+                                    dataType="String" />
+                        <DataColumn name="ApproveDate"
+                                    dataType="DateTime" />
+                        <DataColumn name="DocumentPlanCode"
+                                    dataType="String" />
+                        <DataColumn name="DocumentAccessNumber"
+                                    dataType="String" />
+                        <DataColumn name="DocumentSubject"
+                                    dataType="String" />
+                        <DataColumn name="DocumentInterest"
+                                    dataType="String" />
+                        <DataColumn name="DocumentContent"
+                                    dataType="String" />
+                        <DataColumn name="DocumentBranch"
+                                    dataType="String" />
+                        <DataColumn name="DocumentNumber"
+                                    dataType="String" />
+                        <DataColumn name="DocumentDate"
+                                    dataType="DateTime" />
+                        <DataColumn name="DocumentLanguage"
+                                    dataType="Int32" />
+                        <DataColumn name="DocumentLanguageName"
+                                    dataType="String" />
+                        <DataColumn name="DocumentIOType"
+                                    dataType="Int32" />
+                        <DataColumn name="DocumentIOTypeName"
+                                    dataType="String" />
+                        <DataColumn name="DocumentArrivalType"
+                                    dataType="Int32" />
+                        <DataColumn name="DocumentArrivalTypeName"
+                                    dataType="String" />
+                        <DataColumn name="DocumentType"
+                                    dataType="Int32" />
+                        <DataColumn name="DocumentTypeName"
+                                    dataType="String" />
+                        <DataColumn name="DocumentDescription"
+                                    dataType="String" />
+                        <DataColumn name="DocumentAssignmentDescription"
+                                    dataType="String" />
+                        <DataColumn name="DocumentAttachmentDescription"
+                                    dataType="String" />
+                        <DataColumn name="DocumentInformation"
+                                    dataType="String" />
+                        <DataColumn name="DocumentDistributionRequirement"
+                                    dataType="String" />
+                        <DataColumn name="DocumentApprovementDescription"
+                                    dataType="String" />
+                        <DataColumn name="StatusType"
+                                    dataType="Int32" />
+                        <DataColumn name="StatusTypeName"
+                                    dataType="String" />
+                        <DataColumn name="CreateUserId"
+                                    dataType="Int64" />
+                        <DataColumn name="CreateUserEmail"
+                                    dataType="String" />
+                        <DataColumn name="CreateUserFriendlyName"
+                                    dataType="String" />
+                        <DataColumn name="CreateDate"
+                                    dataType="DateTime" />
+                        <DataColumn name="UpdateUserId"
+                                    dataType="Int64" />
+                        <DataColumn name="UpdateUserEmail"
+                                    dataType="String" />
+                        <DataColumn name="UpdateUserFriendlyName"
+                                    dataType="String" />
+                        <DataColumn name="UpdateDate"
+                                    dataType="DateTime" />
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="true"
+                   defaultPage="1"
+                   defaultPageSize="10">
+                <FilterFields>
+                    <Field name="CreateDate"
+                           dataType="DateTime" />
+                </FilterFields>
+                <DefaultSorting>
+                    <Sort field="CreateDate"
+                          type="Desc"/>
+                </DefaultSorting>
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

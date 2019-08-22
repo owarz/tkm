@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString>
+                </DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                          SELECT COUNT(*) TotalCount
+                          FROM EDMS_Document doc 
+                          WHERE doc.CreateUserId = @CurrentUserId AND doc.StatusType = 1
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <ContextParam name="CurrentUserId"
+                                  dataType="Int64"
+                                  defaultValue="-1"
+                                  variable="${@user_id}"/>
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="EDMS_Document_Stats">
+                    <Columns>
+                        <DataColumn name="TotalCount"
+                                    dataType="Int64" />
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="false">
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

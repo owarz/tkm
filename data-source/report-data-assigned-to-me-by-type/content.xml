@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString>
+                </DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                        SELECT 
+							cat.[id] as DocumentType,
+							CASE
+			                    WHEN cat.[id]=1 THEN 'Normal Evrak'
+			                    WHEN cat.[id]=2 THEN 'Özel Evrak'
+			                    WHEN cat.[id]=3 THEN 'Hizmete Özel Evrak'
+			                    WHEN cat.[id]=4 THEN 'Dilekçe'
+			                    WHEN cat.[id]=5 THEN 'İvedi Evrak'
+			                    WHEN cat.[id]=6 THEN 'Çok İvedi Evrak'
+			                    WHEN cat.[id]=7 THEN 'Günlü Evrak'
+			                    WHEN cat.[id]=8 THEN 'Gizli Evrak'
+			                    WHEN cat.[id]=9 THEN 'Çok Gizli Evrak'
+			                    WHEN cat.[id]=10 THEN 'Kişiye Özel Evrak'
+			                    WHEN cat.[id]=11 THEN 'Kişi Adına Gelen Evrak'
+			                    ELSE ''
+	                        END DocumentTypeName,
+							summary.TotalCount
+						FROM
+						(SELECT id from (values (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11)) CATEGORY(id)) as cat
+						LEFT OUTER JOIN
+						(SELECT 
+								doc.DocumentType,
+								count(*) as TotalCount
+							FROM [EDMS_Document] doc
+							INNER JOIN AppCloud_Workflow wf on wf.Id = doc.WorkflowId
+							WHERE wf.[Status] <> 4 
+                                AND doc.AssigneeId > 0 
+                                AND doc.AssigneeId = @CurrentUserId
+							GROUP BY doc.DocumentType) as summary on cat.id = summary.DocumentType
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <ContextParam name="CurrentUserId"
+                                  dataType="Int64"
+                                  defaultValue="-1"
+                                  variable="${@user_id}"/>
+
+                    <Param name="OrderNumber"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="CompanyId"
+                           dataType="Int64"
+                           defaultValue="" /> 
+                    <Param name="UserId"
+                           dataType="Int64"
+                           defaultValue="" /> 
+                    <Param name="OrderDateLower"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="OrderDateUpper"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="DueDateLower"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="DueDateUpper"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="Status"
+                           dataType="Int32"
+                           defaultValue="-1" />
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="EDMS_Document">
+                    <Columns>
+                        <DataColumn name="DocumentType"
+                                    dataType="String" />
+                        <DataColumn name="DocumentTypeName"
+                                    dataType="Int32" />
+                        <DataColumn name="TotalCount"
+                                    dataType="Int32" />
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="false">
+                <DefaultSorting>
+                    <Sort field="DocumentType"
+                          type="Asc"/>
+                </DefaultSorting>
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

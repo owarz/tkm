@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Report">
+    <xapp:content xapp:primaryType="xapp:ListReport"
+                  xapp:resourceType="/app/foundation/component/list-report"
+                  xapp:created="2015-01-01T11:48:12.871+02:00"
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <DataSourcePath>/content/edms/tk-TM/data-source/report-data-pending-incoming-document</DataSourcePath>
+            <Columns>
+                <ContextMenu>
+                    <LinkButton text="Detay" >
+                        <HrefData fieldName="PagePath"/>
+                        <QueryParameters>
+                            <Param name="executionId"
+                                   fieldName="ETag"
+                                   defaultValue="0"/>
+                        </QueryParameters>
+                    </LinkButton>
+                </ContextMenu>
+                <Data title="ETag"
+                      dataFieldName="ETag"
+                      dataFormat="0"
+                      alignment="Left"
+                      sortable="true"
+                      visible="false"/>
+                <Data title="PagePath"
+                      dataFieldName="PagePath"
+                      alignment="Left"
+                      sortable="true"
+                      visible="false"/>
+                <Data title="PendingState"
+                      dataFieldName="PendingState"
+                      alignment="Left"
+                      sortable="true"
+                      visible="false"/>
+
+                <Data title="Kayıt Birimi"
+                      dataFieldName="TargetOrganizationName"
+                      dataFormat=""
+                      alignment="Left"
+                      sortable="true" />
+                <Data title="Kayıt Yapan Kullanıcı"
+                      dataFieldName="CreateUserFriendlyName"
+                      dataFormat=""
+                      alignment="Left"
+                      sortable="true" /> 
+                <Data title="Evrak Konusu"
+                      dataFieldName="DocumentSubject"
+                      dataFormat=""
+                      alignment="Left"
+                      sortable="true" />
+                <Data title="Geldiği Yer"
+                      dataFieldName="SourceOrganizationName"
+                      dataFormat=""
+                      alignment="Left"
+                      sortable="true" />
+                <Data title="Geliş Şekli"
+                      dataFieldName="DocumentArrivalTypeName"
+                      dataFormat=""
+                      alignment="Left"
+                      sortable="true" />
+                <Data title="Belge Türü"
+                      dataFieldName="DocumentTypeName"
+                      dataFormat=""
+                      alignment="Left"
+                      sortable="true" /> 
+            </Columns>
+            <QueryView>
+                <FormLayout>
+                    <Style width="500"/>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentSubject"
+                                   displayName="Evrak Konusu"/>
+                            <TextBox fieldName="DocumentSubject"
+                                     dataType="String"
+                                     displayName="Evrak Konusu"
+                                     defaultValue="">
+                            </TextBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentInterest"
+                                   displayName="Evrak İlgi"/>
+                            <TextBox fieldName="DocumentInterest"
+                                     dataType="String"
+                                     displayName="Gelen Evrak İlgi"
+                                     defaultValue="">
+                            </TextBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="TargetOrganizationName"
+                                   displayName="Kayıt Birimi"/>
+                            <LookupBox fieldName="TargetOrganizationName"
+                                       dataType="String"
+                                       displayName="Kayıt Birimi *"
+                                       defaultValue="">
+                                <Lookup resourcePath="/content/edms/tk-TM/lookup/lookup-organization">
+                                    <Bindings>
+                                        <Bound source="Id"
+                                               target="TargetOrganizationId" />
+                                        <Bound source="Name"
+                                               target="TargetOrganizationName" />
+                                    </Bindings>
+                                </Lookup>
+                            </LookupBox>
+                            <HiddenBox fieldName="TargetOrganizationId"/>
+                        </Column>
+                        <Column>
+                            <Label fieldName="SourceOrganizationName"
+                                   displayName="Geldiği Yer"/>
+                            <LookupBox fieldName="SourceOrganizationName"
+                                       dataType="String"
+                                       displayName="Geldiği Yer"
+                                       defaultValue="">
+                                <Lookup resourcePath="/content/edms/tk-TM/lookup/lookup-organization">
+                                    <Bindings>
+                                        <Bound source="Id"
+                                               target="SourceOrganizationId" />
+                                        <Bound source="Name"
+                                               target="SourceOrganizationName" />
+                                    </Bindings>
+                                </Lookup>
+                            </LookupBox>
+                            <HiddenBox fieldName="SourceOrganizationId"/>
+                        </Column>
+                    </Row>
+                    <Row> 
+                        <Column>
+                            <Label fieldName="DocumentLanguage"
+                                   displayName="Dili"/>
+                            <ComboBox  fieldName="DocumentLanguage"
+                                       dataType="Int32"
+                                       defaultValue="-1">
+                                <Items>
+                                    <Item text="Hepsi"
+                                          value="-1"/>
+                                    <Item text="Türkmence"
+                                          value="1"/>
+                                    <Item text="Rusça"
+                                          value="2"/>
+                                </Items>
+                            </ComboBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentArrivalType"
+                                   displayName="Geliş Şekli"/>
+                            <ComboBox  fieldName="DocumentArrivalType"
+                                       dataType="Int32"
+                                       defaultValue="-1">
+                                <Items>
+                                    <Item text="Hepsi"
+                                          value="-1"/>
+                                    <Item text="Posta"
+                                          value="1"/>
+                                    <Item text="E-posta"
+                                          value="2"/>
+                                    <Item text="Elden"
+                                          value="3"/>
+                                    <Item text="Fax"
+                                          value="4"/>
+                                </Items>
+                            </ComboBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentType"
+                                   displayName="Evrak Türü"/>
+                            <ComboBox  fieldName="DocumentType"
+                                       dataType="Int32"
+                                       defaultValue="-1">
+                                <Items>
+                                    <Item text="Hepsi"
+                                          value="-1"/>
+                                    <Item text="Normal Evrak"
+                                          value="1"/>
+                                    <Item text="Özel Evrak"
+                                          value="2"/>
+                                    <Item text="Hizmete Özel Evrak"
+                                          value="3"/>
+                                    <Item text="Dilekçe"
+                                          value="4"/>
+                                    <Item text="İvedi Evrak"
+                                          value="5"/>
+                                    <Item text="Çok İvedi Evrak"
+                                          value="6"/>
+                                    <Item text="Günlü Evrak"
+                                          value="7"/>
+                                    <Item text="Gizli Evrak"
+                                          value="8"/>
+                                    <Item text="Çok Gizli Evrak"
+                                          value="9"/>
+                                    <Item text="Kişiye Özel Evrak"
+                                          value="10"/>
+                                    <Item text="Kişi Adına Gelen Evrak"
+                                          value="11"/>
+                                </Items>
+                            </ComboBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentDateLower"
+                                   displayName="Evrak Tarih Aralığı"/>
+                            <LinearLayout orientation="Horizontal">
+                                <DateBox fieldName="DocumentDateLower"
+                                         dataType="String"
+                                         displayName="Evrak Tarihi Başlangıç"
+                                         defaultValue="">
+                                </DateBox>
+                                <Text value=" / ">
+                                    <Style padding="5"
+                                           paddingTop="8"/>
+                                </Text>
+                                <DateBox fieldName="DocumentDateUpper"
+                                         dataType="String"
+                                         displayName="Evrak Tarihi Bitiş"
+                                         defaultValue="">
+                                </DateBox>
+                            </LinearLayout>
+
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="ApproveDateLower"
+                                   displayName="Onay Tarih Aralığı"/>
+                            <LinearLayout orientation="Horizontal">
+                                <DateBox fieldName="ApproveDateLower"
+                                         dataType="String"
+                                         displayName="Onay Tarihi Başlangıç"
+                                         defaultValue="">
+                                </DateBox>
+                                <Text value=" / ">
+                                    <Style padding="5"
+                                           paddingTop="8"/>
+                                </Text>
+                                <DateBox fieldName="ApproveDateUpper"
+                                         dataType="String"
+                                         displayName="Onay Tarihi Bitiş"
+                                         defaultValue="">
+                                </DateBox>
+                            </LinearLayout>
+                        </Column>
+                    </Row>
+
+                </FormLayout>
+            </QueryView>
+        </xapp:config>
+    </xapp:content>
+</root>

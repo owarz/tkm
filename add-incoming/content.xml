@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+	  xapp:primaryType="xapp:Page">
+    <xapp:access enabled="true">
+        <xapp:allow>
+            <xapp:group xapp:value="user"/>
+        </xapp:allow>
+    </xapp:access>
+    <xapp:content xapp:primaryType="xapp:PageContent"
+				  xapp:resourceType="/app/foundation/component/html-page"
+				  xapp:masterPagePath="/app/edms/component/page/full-content-page"
+				  xapp:templatePath=""
+				  xapp:designName=""
+				  xapp:created=""
+				  xapp:createdBy="admin"
+				  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+				  xapp:lastModifiedBy="admin"
+				  xapp:title="Yeni Gelen Evrak Kaydı">
+
+        <xapp:content xapp:primaryType="xapp:Component"
+					  xapp:resourceType="/app/foundation/html-component/box"
+					  xapp:created="2015-01-01T11:48:12.871+02:00"
+					  xapp:createdBy="admin"
+					  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+					  xapp:lastModifiedBy="admin"
+					  xapp:name="box01">
+            <xapp:config>
+                <Title>Yeni Gelen Evrak Kaydı</Title>
+            </xapp:config>
+            <xapp:content xapp:primaryType="xapp:Component"
+						  xapp:resourceType="/app/foundation/html-component/workflow"
+						  xapp:created="2015-01-01T11:48:12.871+02:00"
+						  xapp:createdBy="admin"
+						  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+						  xapp:lastModifiedBy="admin"
+						  xapp:name="workflow01">
+                <xapp:config>
+                    <ViewPath>/content/edms/tk-TM/add-incoming/view/workflow</ViewPath>
+                </xapp:config>
+            </xapp:content>
+        </xapp:content>
+
+    </xapp:content>
+</root>

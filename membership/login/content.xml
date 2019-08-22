@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Page">
+    <xapp:mapping>
+        <xapp:map xapp:value="/login"/>
+    </xapp:mapping>
+    <xapp:content xapp:primaryType="xapp:PageContent"
+                  xapp:resourceType="/app/foundation/component/html-page"
+                  xapp:masterPagePath="/app/edms/component/page/membership-page"
+                  xapp:templatePath=""
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Giriş yap">
+
+        <xapp:content xapp:primaryType="xapp:Component"
+                      xapp:resourceType="/app/foundation/component/login"
+                      xapp:created="2015-01-01T11:48:12.871+02:00"
+                      xapp:createdBy="admin"
+                      xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                      xapp:lastModifiedBy="admin"
+                      xapp:name="membership-login">
+            <xapp:config>
+                <Title>Giriş yap</Title>
+                <HomePath>/content/edms/tk-TM/dashboard</HomePath>
+                <ShowResetPasswordLink>false</ShowResetPasswordLink>
+                <ShowRegisterLink>false</ShowRegisterLink>
+                <ShowHomeLink>false</ShowHomeLink>
+            </xapp:config>
+        </xapp:content>
+
+    </xapp:content>
+</root>

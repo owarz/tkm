@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Kullanıcı veri kaynağı">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString></DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                        SELECT u.[Id] 
+                            ,u.[Email]
+                            ,u.[FirstName]
+                            ,u.[LastName]
+                            ,u.[FirstName] + ' ' + u.[LastName] + ' (' + u.[Email] + ')' FriendlyName
+                            ,(CASE WHEN u.[Active] = 1 THEN 'Aktif' ELSE 'Pasif' END) as [Status]
+                        FROM AppCloud_User u
+                        WHERE (@SearchText IS NULL OR @SearchText = '' OR Email like @SearchText + '%' OR FirstName like @SearchText + '%' OR LastName like @SearchText + '%')
+                            AND (@Keyword IS NULL OR @Keyword = '' OR FirstName like '%' + @Keyword + '%' OR LastName like '%' + @Keyword + '%')
+	                        AND (@GroupId <= 0 OR EXISTS(SELECT 1 FROM AppCloud_User2Group u2g WHERE u2g.GroupId=@GroupId AND u.Id = u2g.UserId))
+	                        AND (@OrganizationId <= 0 OR EXISTS(SELECT 1 FROM AppCloud_User2Organization u2o WHERE u2o.OrganizationId=@OrganizationId AND u.Id = u2o.UserId))
+	                        AND Active=1
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <Param name="Keyword"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="SearchText"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="GroupId"
+                           dataType="Int64"
+                           defaultValue="0" />
+                    <Param name="OrganizationId"
+                           dataType="Int64"
+                           defaultValue="0" />
+                    <Param name="Status"
+                           dataType="Int32"
+                           defaultValue="1" /> 
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="Users">
+                    <Columns>
+                        <DataColumn name="Id"
+                                    dataType="Int64" />
+                        <DataColumn name="Email"
+                                    dataType="String" />
+                        <DataColumn name="FirstName"
+                                    dataType="String" />
+                        <DataColumn name="LastName"
+                                    dataType="String" />
+                        <DataColumn name="FriendlyName"
+                                    dataType="String" />
+                        <DataColumn name="Status"
+                                    dataType="String" />
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="true"
+                   defaultPage="1"
+                   defaultPageSize="10">
+                <FilterFields>
+                    <Field name="Email"
+                           dataType="String" />
+                    <Field name="FirstName"
+                           dataType="String" />
+                    <Field name="LastName"
+                           dataType="String" />
+                </FilterFields>
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

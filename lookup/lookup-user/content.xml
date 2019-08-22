@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Lookup">
+    <xapp:content xapp:primaryType="xapp:LookupContent"
+                  xapp:resourceType="/app/foundation/component/lookup"
+                  xapp:created="2015-01-01T11:48:12.871+02:00"
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Organizasyon birim rehberi">
+        <xapp:config>
+            <Title>Birimler</Title>
+            <DataSourcePath>/content/edms/tk-TM/data-source/data-user-list</DataSourcePath>
+            <Fields>
+                <Field title="Kod"
+                       fieldType="Data"
+                       dataFieldName="Id"
+                       dataFormat="0000"
+                       alignment="Left"
+                       sortable="true"
+                       visible="true"/>
+                <Field title="E-posta"
+                       fieldType="Data"
+                       dataFieldName="Email"
+                       dataFormat="0000"
+                       alignment="Left"
+                       sortable="true"
+                       visible="false"/>
+                <Field title="Adı"
+                       fieldType="Data"
+                       dataFieldName="FirstName"
+                       dataFormat="0000"
+                       alignment="Left"
+                       sortable="true"
+                       visible="false"/>
+                <Field title="Soyadı"
+                       fieldType="Data"
+                       dataFieldName="LastName"
+                       dataFormat="0000"
+                       alignment="Left"
+                       sortable="true"
+                       visible="false"/>
+                <Field title="Açıklama"
+                       fieldType="Data"
+                       dataFieldName="FriendlyName"
+                       dataFormat="0000"
+                       alignment="Left"
+                       sortable="true" />
+            </Fields>
+        </xapp:config>
+    </xapp:content>
+</root>

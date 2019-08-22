@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Data">
+    <xapp:content xapp:primaryType="xapp:DataSource"
+                  xapp:resourceType="/app/foundation/component/data-source"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="Kullanıcı veri kaynağı">
+        <xapp:config>
+            <Source>
+                <Type>Sql</Type>
+                <DbType>MSSQL</DbType>
+                <DbObjectType>SqlQuery</DbObjectType>
+                <DbConnectionString></DbConnectionString>
+                <DbCommandText>
+                    <![CDATA[
+                        SELECT 
+	                        wf.Id,
+	                        resprop.Value as Title,
+	                        wf.Status,
+	                        wf.PendingState,
+	                        pendingProp.Value as PendingStateTitle,
+	                        wf.PendingStateDueDate, 
+	                        wf.CreatedDate,
+	                        wf.DueDate,
+							            wf.PagePath,
+                          assignee.Email as Assignee
+                        FROM AppCloud_Workflow wf
+							          LEFT OUTER JOIN AppCloud_User assignee ON wf.AssignedTo = assignee.Id
+							          LEFT OUTER JOIN AppCloud_Resource parentRes ON 
+								          parentRes.ResourcePath = wf.WorkflowPath AND 
+								          parentRes.Status=0 AND 
+								          parentRes.ResourceType='root'
+	                      LEFT OUTER JOIN AppCloud_Resource contentRes ON 
+								          contentRes.ParentId = parentRes.Id AND 
+								          contentRes.Status=0 AND 
+								          contentRes.ResourceType='xapp:content'
+	                      LEFT OUTER JOIN AppCloud_ResourceProperty resprop ON 
+								          resprop.ResourceId = contentRes.Id AND 
+								          resprop.Name = 'xapp:title'
+	                      LEFT OUTER JOIN AppCloud_Resource pendingRes ON 
+								          pendingRes.ResourcePath = wf.PendingResourcePath AND 
+								          pendingRes.Status=0 AND
+								          pendingRes.ResourceType='xapp:content'
+	                      LEFT OUTER JOIN AppCloud_ResourceProperty pendingProp ON 
+								          pendingProp.ResourceId = pendingRes.Id AND 
+								          pendingProp.Name = 'xapp:title'
+                        WHERE wf.ManagementType = 1 
+                          AND wf.CreatedBy = @UserId
+                          AND (@Status <= 0 OR wf.Status = @Status )
+							            AND (@Title = '' OR @Title IS NULL OR resprop.Value like '%' + @Title + '%')
+							            AND (@StartLowerDate IS NULL OR wf.CreatedDate > CAST(DATEADD(day,-1,@StartLowerDate) as DATE))
+							            AND (@StartUpperDate IS NULL OR wf.CreatedDate < CAST(DATEADD(day,1,@StartUpperDate) as DATE))
+							            AND (@EndLowerDate IS NULL OR wf.DueDate > CAST(DATEADD(day,-1,@EndLowerDate) as DATE))
+							            AND (@EndUpperDate IS NULL OR wf.DueDate < CAST(DATEADD(day,1,@EndUpperDate) as DATE)) 
+                                        AND (@Deadline <= 0 OR wf.DueDate < CAST(DATEADD(day,@Deadline,GETDATE()) as DATE))
+                    ]]>
+                </DbCommandText>
+                <DbParameters>
+                    <ContextParam name="UserId"
+                           dataType="Int64"
+                           defaultValue="-1"
+                           variable="${@user_id}"/>
+                    <Param name="Title"
+                           dataType="String"
+                           defaultValue="" />
+                    <Param name="Status"
+                           dataType="Int32"
+                           defaultValue="2" />
+                    <Param name="Deadline"
+                           dataType="Int32"
+                           defaultValue="0" />
+                    <Param name="StartLowerDate"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="StartUpperDate"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="EndLowerDate"
+                           dataType="DateTime"
+                           defaultValue="" />
+                    <Param name="EndUpperDate"
+                           dataType="DateTime"
+                           defaultValue="" />
+                </DbParameters>
+            </Source>
+            <DataSet>
+                <DataTable name="Users">
+                    <Columns>
+                        <DataColumn name="Id"
+                                    dataType="Int64" />
+                        <DataColumn name="Title"
+                                    dataType="String" />
+                        <DataColumn name="Status"
+                                    dataType="Int32" />
+                        <DataColumn name="PendingStateTitle"
+                                    dataType="String" />
+                        <DataColumn name="PendingStateDueDate"
+                                    dataType="DateTime" />
+                        <DataColumn name="CreatedDate"
+                                    dataType="DateTime" />
+                        <DataColumn name="DueDate"
+                                    dataType="DateTime" />
+                    </Columns>
+                </DataTable>
+            </DataSet>
+            <Query enablePaging="true"
+                   defaultPage="1"
+                   defaultPageSize="10">
+                <FilterFields>
+                    <Field name="Title"
+                           dataType="String" />
+                </FilterFields>
+                <DefaultSorting>
+                    <Sort field="CreatedDate" type="Desc"/>
+                </DefaultSorting>
+            </Query>
+        </xapp:config>
+    </xapp:content>
+</root>

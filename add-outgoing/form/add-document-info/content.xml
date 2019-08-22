@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xapp="http://appcloud.com/xml/content/"
+      xapp:primaryType="xapp:Form">
+    <xapp:content xapp:primaryType="xapp:FormContent"
+                  xapp:resourceType="/app/foundation/component/form"
+                  xapp:created=""
+                  xapp:createdBy="admin"
+                  xapp:lastModified="2015-01-01T11:48:12.871+02:00"
+                  xapp:lastModifiedBy="admin"
+                  xapp:title="">
+        <xapp:config>
+            <FormView>
+                <FormLayout>
+                    <Row>
+                        <Column>
+                            <Label fieldName="SourceOrganizationName"
+                                   displayName="Çıkış Birimi"/>
+                            <LookupBox fieldName="SourceOrganizationName"
+                                       dataType="String"
+                                       displayName="Çıkış Birimi"
+                                       defaultValue="">
+                                <Lookup resourcePath="/content/edms/tk-TM/lookup/lookup-organization">
+                                    <Bindings>
+                                        <Bound source="Id"
+                                               target="SourceOrganizationId" />
+                                        <Bound source="Name"
+                                               target="SourceOrganizationName" />
+                                    </Bindings>
+                                </Lookup>
+                            </LookupBox>
+                            <HiddenBox fieldName="SourceOrganizationId"/>
+                        </Column>
+                        <Column>
+                            <Label fieldName="TargetOrganizationName"
+                                   displayName="Gideceği Yer *"/>
+                            <LookupBox fieldName="TargetOrganizationName"
+                                       dataType="String"
+                                       displayName="Gideceği Yer *"
+                                       defaultValue="">
+                                <Lookup resourcePath="/content/edms/tk-TM/lookup/lookup-organization">
+                                    <Bindings>
+                                        <Bound source="Id"
+                                               target="TargetOrganizationId" />
+                                        <Bound source="Name"
+                                               target="TargetOrganizationName" />
+                                    </Bindings>
+                                </Lookup>
+                                <Validation>
+                                    <Required message="Gideceği Yer alanı boş geçilemez." />
+                                </Validation>
+                            </LookupBox>
+                            <HiddenBox fieldName="TargetOrganizationId"/>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="ApproveUser"
+                                   displayName="Havale Onaylayacak Kullanıcı"/>
+                            <LookupBox fieldName="ApproveUser"
+                                       dataType="String"
+                                       displayName="Onaylayacak Kullanıcı"
+                                       defaultValue="">
+                                <Lookup resourcePath="/content/edms/tk-TM/lookup/lookup-user">
+                                    <Bindings>
+                                        <Bound source="Id"
+                                               target="ApproveUserId" />
+                                        <Bound source="FriendlyName"
+                                               target="ApproveUser" />
+                                        <Bound source="Email"
+                                               target="ApproveUserEmail" />
+                                    </Bindings>
+                                    <Filter>
+                                        <Parameter name="OrganizationId"
+                                                   fieldName="OrganizationId"
+                                                   defaultValue=""/>
+                                    </Filter>
+                                </Lookup>
+                            </LookupBox>
+                            <HiddenBox fieldName="ApproveUserId"/>
+                            <HiddenBox fieldName="ApproveUserEmail"/>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentPlanCode"
+                                   displayName="Dosya Planı"/>
+                            <TextBox fieldName="DocumentPlanCode"
+                                     dataType="String"
+                                     displayName="Dosya Planı"
+                                     defaultValue="">
+                                <Validation>
+                                    <MaxLength message="Dosya Planı alanı en fazla 100 karakter olmalıdır."
+                                               value="100" />
+                                </Validation>
+                            </TextBox>
+                        </Column> 
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentSubject"
+                                   displayName="Evrak Konusu *"/>
+                            <TextBox fieldName="DocumentSubject"
+                                     dataType="String"
+                                     displayName="Evrak Konusu"
+                                     defaultValue="">
+                                <Validation>
+                                    <MaxLength message="Evrak Konusu alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentInterest"
+                                   displayName="Giden Evrak İlgi"/>
+                            <TextBox fieldName="DocumentInterest"
+                                     dataType="String"
+                                     displayName="Gelen Evrak İlgi"
+                                     defaultValue="">
+                                <Validation>
+                                    <MaxLength message="Giden Evrak İlgi alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentArrivalType"
+                                   displayName="Gidiş Şekli"/>
+                            <ComboBox  fieldName="DocumentArrivalType"
+                                       dataType="Int32"
+                                       defaultValue="1">
+                                <Items>
+                                    <Item text="Posta"
+                                          value="1"/>
+                                    <Item text="E-posta"
+                                          value="2"/>
+                                    <Item text="Elden"
+                                          value="3"/>
+                                    <Item text="Fax"
+                                          value="4"/>
+                                </Items>
+                            </ComboBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentType"
+                                   displayName="Evrak Türü"/>
+                            <ComboBox  fieldName="DocumentType"
+                                       dataType="Int32"
+                                       defaultValue="1">
+                                <Items>
+                                    <Item text="Normal Evrak"
+                                          value="1"/>
+                                    <Item text="Özel Evrak"
+                                          value="2"/>
+                                    <Item text="Hizmete Özel Evrak"
+                                          value="3"/>
+                                    <Item text="Dilekçe"
+                                          value="4"/>
+                                    <Item text="İvedi Evrak"
+                                          value="5"/>
+                                    <Item text="Çok İvedi Evrak"
+                                          value="6"/>
+                                    <Item text="Günlü Evrak"
+                                          value="7"/>
+                                    <Item text="Gizli Evrak"
+                                          value="8"/>
+                                    <Item text="Çok Gizli Evrak"
+                                          value="9"/>
+                                    <Item text="Kişiye Özel Evrak"
+                                          value="10"/>
+                                    <Item text="Kişi Adına Gelen Evrak"
+                                          value="11"/>
+                                </Items>
+                            </ComboBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentDescription"
+                                   displayName="Evrak Açıklama"/>
+                            <TextBox fieldName="DocumentDescription"
+                                     dataType="String"
+                                     displayName="Evrak Açıklama">
+                                <Validation>
+                                    <MaxLength message="Evrak Açıklama alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentApprovementDescription"
+                                   displayName="Onay Açıklama"/>
+                            <TextBox fieldName="DocumentApprovementDescription"
+                                     dataType="String"
+                                     displayName="Onay Açıklama">
+                                <Validation>
+                                    <MaxLength message="Onay Açıklama alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentDistributionRequirement"
+                                   displayName="Dağıtım Gereği"/>
+                            <TextBox fieldName="DocumentDistributionRequirement"
+                                     dataType="String"
+                                     displayName="Dağıtım Gereği">
+                                <Validation>
+                                    <MaxLength message="Dağıtım Gereği alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentInformation"
+                                   displayName="Bilgi"/>
+                            <TextBox fieldName="DocumentInformation"
+                                     dataType="String"
+                                     displayName="Bilgi">
+                                <Validation>
+                                    <MaxLength message="Bilgi alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox> 
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentAttachmentDescription"
+                                   displayName="Evrak Ekleri"/>
+                            <TextBox fieldName="DocumentAttachmentDescription"
+                                     dataType="String"
+                                     displayName="Evrak Ekleri">
+                                <Validation>
+                                    <MaxLength message="Evrak Ekleri alanı en fazla 250 karakter olmalıdır."
+                                               value="250" />
+                                </Validation>
+                            </TextBox>
+                        </Column>
+                        <Column>
+                            <Label fieldName="DocumentLanguage"
+                                   displayName="Dili"/>
+                            <ComboBox  fieldName="DocumentLanguage"
+                                       dataType="Int32"
+                                       defaultValue="1">
+                                <Items>
+                                    <Item text="Türkmence"
+                                          value="1"/>
+                                    <Item text="Rusça"
+                                          value="2"/>
+                                </Items>
+                            </ComboBox>
+                        </Column>
+                    </Row>
+                    <Row>
+                        <Column>
+                            <Label fieldName="DocumentAttachment"
+                                   displayName="Dosyalar"/>
+                            <FileBox fieldName="DocumentAttachment"
+                                     displayName="Dosyalar"
+                                     dataType="FileDataType"
+                                     dataCollectionType="Array"
+                                     allowMultiple="true">
+                                <Validation>
+                                    <Required message="Dosya alanı boş geçilemez." />
+                                </Validation> 
+                            </FileBox>
+                        </Column>
+                        <Column>
+                        </Column>
+                    </Row>
+                </FormLayout>
+            </FormView>
+        </xapp:config>
+    </xapp:content>
+</root>
